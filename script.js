@@ -1,7 +1,7 @@
 function calculateDamage() {
-    const baseDamage = parseInt(document.getElementById('baseDamage').value);
-    const strModifier = parseInt(document.getElementById('strModifier').value);
-    const diceRoll = parseInt(document.getElementById('diceRoll').value);
+    const baseDamage = parseInt(document.getElementById('baseDamage').value) || 0;
+    const strModifier = parseInt(document.getElementById('strModifier').value) || 0;
+    const diceRoll = parseInt(document.getElementById('diceRoll').value) || 1;
     let intModifier = 0;
     let diceRoll2 = 0;
     let diceRoll3 = 0;
