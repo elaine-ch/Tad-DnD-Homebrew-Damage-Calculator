@@ -16,9 +16,9 @@ function calculateDamage() {
     let magDamage = 0;
 
     if (document.getElementById('multiAttack').checked) {
-        intModifier = parseInt(document.getElementById('intModifier').value) || 0;
-        diceRoll2 = parseInt(document.getElementById('diceRoll2').value) || 0;
-        diceRoll3 = parseInt(document.getElementById('diceRoll3').value) || 0;
+        intModifier = parseFloat(document.getElementById('intModifier').value) || 0;
+        diceRoll2 = parseFloat(document.getElementById('diceRoll2').value) || 0;
+        diceRoll3 = parseFloat(document.getElementById('diceRoll3').value) || 0;
 
         if(!checkInputValidity(diceRoll2) || !checkInputValidity(diceRoll3)){
             document.getElementById('result').innerHTML = `Invalid dice roll input.`;
