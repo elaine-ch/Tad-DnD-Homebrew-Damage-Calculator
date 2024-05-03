@@ -50,7 +50,7 @@ function getModifierFromRoll(roll){
 }
 
 function checkInputValidity(roll){
-    if (roll < 1 || roll > 20 || !Number.isInteger(roll)){
+    if (roll < 0 || roll > 20 || !Number.isInteger(roll)){
         return false;
     }
     return true;
