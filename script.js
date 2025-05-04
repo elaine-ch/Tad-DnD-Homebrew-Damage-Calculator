@@ -68,6 +68,7 @@ function toggleAttack() {
         document.getElementById('rollLabel').innerHTML = `D20 Roll:`;
         document.getElementById('infusedCheck').style.display = 'none';
         document.getElementById('secondAttack').style.display = 'none';
+        document.getElementById('multiAttack').checked = false;
     } else {
         document.getElementById('physical').innerHTML = '<strong>' + `Physical Attack` + '</strong>';
         document.getElementById('magical').innerHTML = `Magical Attack`;
