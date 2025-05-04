@@ -1,7 +1,10 @@
+const toggleSwitch = document.querySelector('#toggle input[type="checkbox"]');
+
 function calculateDamage() {
     const baseDamage = parseFloat(document.getElementById('baseDamage').value) || 0;
     const strModifier = parseFloat(document.getElementById('strModifier').value) || 0;
     const diceRoll = parseFloat(document.getElementById('diceRoll').value) || 1;
+
     let intModifier = 0;
     let diceRoll2 = 0;
     let diceRoll3 = 0;
@@ -56,6 +59,28 @@ function checkInputValidity(roll){
     return true;
 }
 
+function toggleAttack() {
+    if (toggleSwitch.checked) {
+        document.getElementById('physical').innerHTML = `Physical Attack`;
+        document.getElementById('magical').innerHTML = '<strong>' + `Magical Attack` + '</strong>';
+        document.getElementById('baseLabel').innerHTML = `Spell Base Damage:`;
+        document.getElementById('modLabel').innerHTML = `Int/Wis Stat:`;
+        document.getElementById('rollLabel').innerHTML = `D20 Roll:`;
+        document.getElementById('infusedCheck').style.display = 'none';
+    } else {
+        document.getElementById('physical').innerHTML = '<strong>' + `Physical Attack` + '</strong>';
+        document.getElementById('magical').innerHTML = `Magical Attack`;
+        document.getElementById('baseLabel').innerHTML = `Weapon Base Damage:`;
+        document.getElementById('modLabel').innerHTML = `Str/Dex Stat:`;
+        document.getElementById('rollLabel').innerHTML = `D20 Roll:`;
+        document.getElementById('infusedCheck').style.display = 'block';
+    }
+}
+
+toggleAttack();
+
 document.getElementById('multiAttack').addEventListener('change', function() {
     document.getElementById('secondAttack').style.display = this.checked ? 'block' : 'none';
 });
+
+toggleSwitch.addEventListener('change', toggleAttack);
