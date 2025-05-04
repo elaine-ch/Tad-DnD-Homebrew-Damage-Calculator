@@ -1,5 +1,23 @@
 const toggleSwitch = document.querySelector('#toggle input[type="checkbox"]');
 
+function updateDarkMode() {
+    const html = document.documentElement;
+    if (document.getElementById('color-scheme-dark').checked) {
+        html.setAttribute('data-darkmode', '1');
+    } else if (document.getElementById('color-scheme-light').checked) {
+        html.setAttribute('data-darkmode', '0');
+    } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        html.setAttribute('data-darkmode', prefersDark ? '1' : '0');
+    }
+}
+
+document.querySelectorAll('input[name="color-scheme"]').forEach(input =>
+    input.addEventListener('change', updateDarkMode)
+);
+
+window.addEventListener('DOMContentLoaded', updateDarkMode);
+
 function calculateDamage() {
     const baseDamage = parseFloat(document.getElementById('baseDamage').value) || 0;
     const strModifier = parseFloat(document.getElementById('strModifier').value) || 0;
