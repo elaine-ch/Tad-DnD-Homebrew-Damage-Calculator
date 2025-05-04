@@ -76,6 +76,7 @@ function toggleAttack() {
         document.getElementById('modLabel').innerHTML = `Str/Dex Stat:`;
         document.getElementById('rollLabel').innerHTML = `D20 Roll:`;
         document.getElementById('infusedCheck').style.display = 'block';
+        document.getElementById('multiAttack').checked = false;
     }
 }
 
