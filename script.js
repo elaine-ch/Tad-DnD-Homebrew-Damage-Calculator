@@ -35,9 +35,17 @@ function calculateDamage() {
     document.getElementById('result').innerHTML = `Total Damage: ${physDamage} physical and ${magDamage} magic damage`;
     document.getElementById('crit').innerHTML = `No status effect applied.`;
 
+    let jsConfetti = new JSConfetti();
+
     if(diceRoll3 == 20){
         document.getElementById('crit').innerHTML = `You crit! Apply your status effect.`;
+        jsConfetti.addConfetti({
+            confettiColors: [
+                '#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7',
+              ],
+        })
     }
+
 }
 
 function getModifierFromRoll(roll){
