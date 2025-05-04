@@ -66,7 +66,7 @@ function toggleAttack() {
         document.getElementById('baseLabel').innerHTML = `Spell Base Damage:`;
         document.getElementById('modLabel').innerHTML = `Int/Wis Stat:`;
         document.getElementById('rollLabel').innerHTML = `D20 Roll:`;
-        document.getElementById('infusedCheck').style.display = 'none';
+        document.getElementById('infusedCheck').style.visibility = 'hidden';
         document.getElementById('secondAttack').style.display = 'none';
         document.getElementById('multiAttack').checked = false;
     } else {
@@ -75,7 +75,7 @@ function toggleAttack() {
         document.getElementById('baseLabel').innerHTML = `Weapon Base Damage:`;
         document.getElementById('modLabel').innerHTML = `Str/Dex Stat:`;
         document.getElementById('rollLabel').innerHTML = `D20 Roll:`;
-        document.getElementById('infusedCheck').style.display = 'block';
+        document.getElementById('infusedCheck').style.visibility = 'visible';
         document.getElementById('multiAttack').checked = false;
     }
 }
