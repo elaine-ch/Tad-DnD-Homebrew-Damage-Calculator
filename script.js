@@ -1,10 +1,11 @@
 const toggleSwitch = document.querySelector('#toggle input[type="checkbox"]');
+let phys = true;
 
 function updateDarkMode() {
     const html = document.documentElement;
-    if (document.getElementById('color-scheme-dark').checked) {
+    if (document.getElementById('dark').checked) {
         html.setAttribute('data-darkmode', '1');
-    } else if (document.getElementById('color-scheme-light').checked) {
+    } else if (document.getElementById('light').checked) {
         html.setAttribute('data-darkmode', '0');
     } else {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -12,7 +13,7 @@ function updateDarkMode() {
     }
 }
 
-document.querySelectorAll('input[name="color-scheme"]').forEach(input =>
+document.querySelectorAll('input[name="colorScheme"]').forEach(input =>
     input.addEventListener('change', updateDarkMode)
 );
 
@@ -50,18 +51,23 @@ function calculateDamage() {
         magDamage = Math.ceil((intModifier/2) * getModifierFromRoll(diceRoll2));
     }
 
-    document.getElementById('result').innerHTML = `Total Damage: ${physDamage} physical and ${magDamage} magic damage`;
-    document.getElementById('crit').innerHTML = `No status effect applied.`;
+    if (phys) {
+        document.getElementById('result').innerHTML = `Total Damage: ${physDamage} physical and ${magDamage} magic damage`;
+        document.getElementById('crit').innerHTML = `No status effect applied.`;
+    } else {
+        document.getElementById('result').innerHTML = `Total Damage: ${physDamage} magic damage`;
+    }
+    
 
     let jsConfetti = new JSConfetti();
 
     if(diceRoll3 == 20){
         document.getElementById('crit').innerHTML = `You crit! Apply your status effect.`;
         jsConfetti.addConfetti({
-            confettiColors: [
-                '#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7',
-              ],
-        })
+            emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
+            emojiSize: 50,
+            confettiSpeed: 50,
+         })
     }
 
 }
@@ -95,6 +101,7 @@ function toggleAttack() {
         document.getElementById('infusedCheck').style.visibility = 'hidden';
         document.getElementById('secondAttack').style.display = 'none';
         document.getElementById('multiAttack').checked = false;
+        phys = false;
     } else {
         document.getElementById('physical').innerHTML = '<strong>' + `Physical Attack` + '</strong>';
         document.getElementById('magical').innerHTML = `Magical Attack`;
@@ -103,6 +110,7 @@ function toggleAttack() {
         document.getElementById('rollLabel').innerHTML = `D20 Roll:`;
         document.getElementById('infusedCheck').style.visibility = 'visible';
         document.getElementById('multiAttack').checked = false;
+        phys = true;
     }
 }
 
