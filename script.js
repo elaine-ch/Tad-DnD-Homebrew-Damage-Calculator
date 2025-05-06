@@ -56,6 +56,7 @@ function calculateDamage() {
         document.getElementById('crit').innerHTML = `No status effect applied.`;
     } else {
         document.getElementById('result').innerHTML = `Total Damage: ${physDamage} magic damage`;
+        document.getElementById('crit').innerHTML = ``;
     }
     
 
