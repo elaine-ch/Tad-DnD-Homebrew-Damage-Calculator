@@ -24,6 +24,13 @@ function calculateDamage() {
     const strModifier = parseFloat(document.getElementById('strModifier').value) || 0;
     const diceRoll = parseFloat(document.getElementById('diceRoll').value) || 1;
 
+    let mult;
+    if(document.getElementById('multCheck').checked) {
+        mult = parseFloat(document.getElementById('multModifier').value) || 1;
+    } else {
+        mult = 1;
+    }
+
     let intModifier = 0;
     let diceRoll2 = 0;
     let diceRoll3 = 0;
@@ -34,7 +41,7 @@ function calculateDamage() {
         return;
     }
 
-    let physDamage = Math.ceil(baseDamage + strModifier * getModifierFromRoll(diceRoll));
+    let physDamage = Math.ceil((baseDamage + strModifier * getModifierFromRoll(diceRoll)) * mult);
     let magDamage = 0;
 
     if (document.getElementById('multiAttack').checked) {
@@ -48,7 +55,7 @@ function calculateDamage() {
             return;
         }
 
-        magDamage = Math.ceil((intModifier/2) * getModifierFromRoll(diceRoll2));
+        magDamage = Math.ceil((intModifier/2) * getModifierFromRoll(diceRoll2) * mult);
     }
 
     if (phys) {
@@ -92,7 +99,15 @@ function checkInputValidity(roll){
     return true;
 }
 
+//switch between magical and physical attack views
 function toggleAttack() {
+    document.getElementById('multiAttack').checked = false;
+    document.getElementById('multCheck').checked = false;
+    document.getElementById('mult').style.display = 'none';
+
+    document.getElementById('result').innerHTML = ``;
+    document.getElementById('crit').innerHTML = ``;
+    
     if (toggleSwitch.checked) {
         document.getElementById('physical').innerHTML = `Physical Attack`;
         document.getElementById('magical').innerHTML = '<strong>' + `Magical Attack` + '</strong>';
@@ -101,7 +116,6 @@ function toggleAttack() {
         document.getElementById('rollLabel').innerHTML = `D20 Roll:`;
         document.getElementById('infusedCheck').style.visibility = 'hidden';
         document.getElementById('secondAttack').style.display = 'none';
-        document.getElementById('multiAttack').checked = false;
         phys = false;
     } else {
         document.getElementById('physical').innerHTML = '<strong>' + `Physical Attack` + '</strong>';
@@ -110,15 +124,20 @@ function toggleAttack() {
         document.getElementById('modLabel').innerHTML = `Str/Dex Stat:`;
         document.getElementById('rollLabel').innerHTML = `D20 Roll:`;
         document.getElementById('infusedCheck').style.visibility = 'visible';
-        document.getElementById('multiAttack').checked = false;
         phys = true;
     }
 }
 
 toggleAttack();
 
+//enable multi-attack
 document.getElementById('multiAttack').addEventListener('change', function() {
     document.getElementById('secondAttack').style.display = this.checked ? 'block' : 'none';
+});
+
+//enable multiplier
+document.getElementById('multCheck').addEventListener('change', function() {
+    document.getElementById('mult').style.display = this.checked ? 'block' : 'none';
 });
 
 toggleSwitch.addEventListener('change', toggleAttack);

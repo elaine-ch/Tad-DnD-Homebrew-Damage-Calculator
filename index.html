@@ -51,6 +51,11 @@
                 <input type="number" id="diceRoll" name="diceRoll" required>
             </fieldset>
 
+            <label id="multiplierCheck">
+                <input type="checkbox" id="multCheck" name="multCheck">
+                Apply Multiplier
+            </label>
+
             <label id="infusedCheck">
                 <input type="checkbox" id="multiAttack" name="multiAttack">
                 Enable Infused Attack
@@ -73,10 +78,15 @@
         </div>
 
         <br />
-        <div id="button">
-            <button type="button" onclick="calculateDamage()">Submit</button>
+        <div id="lowerBlock">
+            <div id="mult" style="margin-right: 20px;">
+                <label for="multModifier">x</label>
+                <input type="number" id="multModifier" name="multModifier" style="margin: 0;">
+            </div>
+            <div id="button" style="margin: 0;">
+                <button type="button" onclick="calculateDamage()">Submit</button>
+            </div>
         </div>
-        
     </form>
 
     <div id="result"></div>
