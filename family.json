@@ -1,13 +1,12 @@
 [
-  { "name": "Henry James Parker",  "photo": "../images/family/gaspard.png"  },
-  { "name": "Ruth Anne Parker",   "photo": "../images/family/camille.png"   },
+  { "name": "Henry Parker",  "photo": "../images/family/gaspard.png"  },
+  { "name": "Ruth Parker",   "photo": "../images/family/camille.png"   },
   { "name": "Alice Parker",  "photo": "../images/family/camille.png"  },
-  { "name": "Brian Lee Parker",  "photo": "../images/family/camille.png"  },
+  { "name": "Brian Parker",  "photo": "../images/family/camille.png"  },
   { "name": "Chloe Parker",  "photo": "../images/family/camille.png"  },
   { "name": "Daniel Parker", "photo": "../images/family/camille.png" },
-  { "name": "Ella Kim-Parker",   "photo": "../images/family/camille.png"  },
-  { "name": "Grace Min Kim", "photo": "../images/family/camille.png"},
+  { "name": "Ella Parker",   "photo": "../images/family/camille.png"  },
   { "name": "Finn Kim",   "photo": "../images/family/camille.png"   },
-  { "name": "Alex J. Morgan",   "photo": "../images/family/camille.png"   },
+  { "name": "Alex Morgan",   "photo": "../images/family/camille.png"   },
   { "name": "Bea Kim", "photo": "../images/family/camille.png"}
 ]

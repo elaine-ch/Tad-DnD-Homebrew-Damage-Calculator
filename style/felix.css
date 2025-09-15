@@ -124,23 +124,15 @@ body{
 
 /* -------- Photo panel (accordion) -------- */
 .photo{
-  display:block;
-  max-height:0;
-  overflow:hidden;
-  transition:max-height .28s ease;
+  max-height:0; overflow:hidden; transition: max-height .28s ease;
 }
-.photo.open{ max-height: 360px; }
-.photo .full-name{
-  margin:.6rem 0 .35rem;
-  font-weight:800;
-  text-align:center;
-}
+.photo.open{ max-height: 260px; }
 .photo img{
-  display:block; margin:.25rem auto 0; max-height:300px; max-width: 90%;
+  display:block; margin:.6rem auto 0; max-height:240px; max-width: 90%;
   border-radius:14px; border:1px solid #2b2f3a; box-shadow: var(--shadow);
 }
 .photo .placeholder{
-  color:var(--muted); font-size:.9rem; margin:.5rem 0 0; text-align:center;
+  color:var(--muted); font-size:.9rem; margin:.5rem 0 0;
 }
 
 /* -------- Footer -------- */
