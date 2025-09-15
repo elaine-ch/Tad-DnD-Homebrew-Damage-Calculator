@@ -1,0 +1,148 @@
+/* -------- Base -------- */
+:root{
+  --bg:#0f1115;
+  --card:#171a21;
+  --ink:#e8ecf1;
+  --muted:#aab2bd;
+  --accent:#5fb3f6;
+  --line:#2a2f3a;
+  --danger:#e43f5a;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  color:var(--ink);
+  background: radial-gradient(1200px 800px at 70% -20%, #1a2030 0%, var(--bg) 60%);
+}
+
+.site-header,.site-footer{ text-align:center; padding:1.25rem .75rem; }
+.site-header h1{ margin:.25rem 0 .35rem; font-weight:800; letter-spacing:.3px; }
+.site-header .sub{ margin:0; color:var(--muted); }
+
+.container{ max-width:1100px; margin:0 auto; padding: 0 1rem 3rem; }
+
+/* -------- Controls -------- */
+.controls{
+  display:flex; gap:.5rem; align-items:center; justify-content:center;
+  margin: 1rem auto 1.5rem;
+  flex-wrap:wrap;
+}
+.controls input[type="search"]{
+  flex:1 1 280px; max-width:420px;
+  padding:.75rem .9rem;
+  border:1px solid var(--line);
+  background:#0d1016; color:var(--ink);
+  border-radius:12px; outline:none;
+  box-shadow: inset 0 0 0 1px transparent;
+}
+.controls input[type="search"]:focus{
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+.controls button{
+  padding:.7rem 1rem; border-radius:12px; border:1px solid var(--line);
+  background: linear-gradient(#1c2230, #151924); color:var(--ink);
+  cursor:pointer; box-shadow: var(--shadow);
+}
+.controls button.secondary{ opacity:.85 }
+.controls button:hover{ transform: translateY(-1px); }
+
+/* -------- Tree layout (UL/LI connectors) -------- */
+#tree{ overflow-x:auto; padding-bottom:1rem; }
+.tree, .tree ul{ padding-top:20px; position:relative; }
+.tree ul{ padding-left:0; }
+.tree li{
+  display:inline-block; text-align:center; list-style:none;
+  position:relative; padding:20px 10px 0 10px; vertical-align:top;
+}
+
+/* connectors from parent to children */
+.tree li::before, .tree li::after{
+  content:""; position:absolute; top:0; right:50%;
+  border-top:1px solid var(--line); width:50%; height:20px;
+}
+.tree li::after{
+  right:auto; left:50%; border-left:1px solid var(--line);
+}
+.tree li:only-child::before, .tree li:only-child::after{ display:none; }
+.tree li:only-child{ padding-top:0; }
+.tree li:first-child::before, .tree li:last-child::after{ border:0 none; }
+.tree li:last-child::before{ border-right:1px solid var(--line); border-radius:0 6px 0 0; }
+.tree li:first-child::after{ border-radius:6px 0 0 0; }
+
+/* containers for a person or couple */
+.single, .couple-people{
+  background: var(--card);
+  border:1px solid var(--line);
+  border-radius:16px; padding:12px; min-width: 200px;
+  box-shadow: var(--shadow);
+}
+
+.couple-people{
+  position:relative;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items:start;
+  min-width: 360px;
+}
+
+/* marriage line between spouses (appears centered between the two columns) */
+.couple-people .marriage{
+  position:absolute;
+  top: 36px; /* roughly center of the buttons */
+  left: 22%;
+  right: 22%;
+  border-top: 2px solid var(--line);
+  pointer-events:none;
+}
+
+/* keep spouse blocks above the marriage line */
+.spouse{ position:relative; z-index:1; }
+
+/* -------- Person button -------- */
+.person{
+  width:100%; text-align:center;
+  padding:.65rem .9rem;
+  background: #0d1016; color:var(--ink);
+  border:1px solid #222632; border-radius:12px;
+  font-weight:600; letter-spacing:.2px;
+  cursor:pointer;
+}
+.person:hover{ border-color:#2e3545; }
+.person[aria-expanded="true"]{ outline: 2px solid var(--accent); }
+
+/* search highlight */
+.person.match{
+  color: var(--danger);
+  border-color: var(--danger);
+  outline: 2px solid var(--danger);
+}
+
+/* -------- Photo panel (accordion) -------- */
+.photo{
+  display:block;
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .28s ease;
+}
+.photo.open{ max-height: 360px; }
+.photo .full-name{
+  margin:.6rem 0 .35rem;
+  font-weight:800;
+  text-align:center;
+}
+.photo img{
+  display:block; margin:.25rem auto 0; max-height:300px; max-width: 90%;
+  border-radius:14px; border:1px solid #2b2f3a; box-shadow: var(--shadow);
+}
+.photo .placeholder{
+  color:var(--muted); font-size:.9rem; margin:.5rem 0 0; text-align:center;
+}
+
+/* -------- Footer -------- */
+.site-footer{ color:var(--muted); border-top:1px dashed var(--line); }
+.site-footer code{ color:#c3cad4; }

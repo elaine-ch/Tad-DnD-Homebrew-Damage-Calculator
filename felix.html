@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D&D Damage Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style/felix.css">
+<link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+</head>
+<body>
+    <header class="site-header">
+      <h1>Family Tree</h1>
+      <p class="sub">Click a name to toggle the photo. Search matches any first/middle/last name.</p>
+    </header>
+
+    <main class="container">
+      <form id="search-form" class="controls" autocomplete="off">
+        <input id="search-input" type="search" placeholder="Search any name…" aria-label="Search any name" />
+        <button type="submit">Search</button>
+        <button type="button" id="clear-btn" class="secondary">Clear</button>
+      </form>
+
+      <div id="tree">
+        <ul class="tree">
+          <!-- Grandparents -->
+          <li class="couple">
+            <div class="couple-people">
+              <div class="spouse">
+                <button class="person" data-fullname="Henry James Parker" aria-expanded="false">Henry Parker</button>
+                <div class="photo" aria-hidden="true"></div>
+              </div>
+              <div class="spouse">
+                <button class="person" data-fullname="Ruth Anne Parker" aria-expanded="false">Ruth Parker</button>
+                <div class="photo" aria-hidden="true"></div>
+              </div>
+              <span class="marriage" aria-hidden="true" title="Married"></span>
+            </div>
+
+            <ul>
+              <!-- Alice + Alex -->
+              <li class="couple">
+                <div class="couple-people">
+                  <div class="spouse">
+                    <button class="person" data-fullname="Alice Parker" aria-expanded="false">Alice Parker</button>
+                    <div class="photo" aria-hidden="true"></div>
+                  </div>
+                  <div class="spouse">
+                    <button class="person" data-fullname="Alex J. Morgan" aria-expanded="false">Alex Morgan</button>
+                    <div class="photo" aria-hidden="true"></div>
+                  </div>
+                  <span class="marriage" aria-hidden="true" title="Married"></span>
+                </div>
+                <ul>
+                  <li>
+                    <div class="single">
+                      <button class="person" data-fullname="Chloe Parker" aria-expanded="false">Chloe Parker</button>
+                      <div class="photo" aria-hidden="true"></div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="single">
+                      <button class="person" data-fullname="Daniel Parker" aria-expanded="false">Daniel Parker</button>
+                      <div class="photo" aria-hidden="true"></div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Brian + Bea with THREE children -->
+              <li class="couple">
+                <div class="couple-people">
+                  <div class="spouse">
+                    <button class="person" data-fullname="Brian Lee Parker" aria-expanded="false">Brian Parker</button>
+                    <div class="photo" aria-hidden="true"></div>
+                  </div>
+                  <div class="spouse">
+                    <button class="person" data-fullname="Bea Kim" aria-expanded="false">Bea Kim</button>
+                    <div class="photo" aria-hidden="true"></div>
+                  </div>
+                  <span class="marriage" aria-hidden="true" title="Married"></span>
+                </div>
+                <ul>
+                  <li>
+                    <div class="single">
+                      <button class="person" data-fullname="Ella Kim-Parker" aria-expanded="false">Ella Kim-Parker</button>
+                      <div class="photo" aria-hidden="true"></div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="single">
+                      <button class="person" data-fullname="Finn Kim" aria-expanded="false">Finn Kim</button>
+                      <div class="photo" aria-hidden="true"></div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="single">
+                      <button class="person" data-fullname="Grace Min Kim" aria-expanded="false">Grace Kim</button>
+                      <div class="photo" aria-hidden="true"></div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <script src="./scripts/felix.js" defer></script>
+</body>
+</html>
