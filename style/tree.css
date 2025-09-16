@@ -167,10 +167,22 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    font-family: "Montserrat", san-serif;
+    font-size: 1.5vw;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
 body {
     font-family: "Roboto", sans-serif;
     font-size: 1.25vw;
     font-weight: 300;
+}
+
+p {
+    padding: 0;
+    margin: 0;
 }
 
 .f, .m, .u, .x {
@@ -218,6 +230,11 @@ body {
 .x.tr, .x.tl, .x.br, .x.bl {
     fill: dimgray;
     stroke: none;
+}
+
+img.person {
+  float: right;
+  margin: 0px;
 }
 
 line {
