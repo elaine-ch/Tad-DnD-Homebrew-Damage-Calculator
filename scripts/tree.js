@@ -142,8 +142,10 @@ function firstNameOf(full) {
 }
 
 function removeHighlights() {
+  document.querySelectorAll('.dead').forEach(el => el.style.fill = 'lightgray');
   document.querySelectorAll('.f').forEach(el => el.style.fill = 'pink');
   document.querySelectorAll('.m').forEach(el => el.style.fill = 'lightblue');
+  document.querySelectorAll('.dead').forEach(el => el.style.fill = 'lightgray');
 }
 
 function highlightByName(q) {

@@ -204,6 +204,10 @@ p {
     fill: lightblue;
 }
 
+.dead {
+    fill: lightgray;
+}
+
 .u {
     fill: lightgray;
 }
