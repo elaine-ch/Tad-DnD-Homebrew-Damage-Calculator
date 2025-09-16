@@ -192,8 +192,20 @@ p {
     fill-opacity: 0.6;
 }
 
+.main {
+    stroke: darkgreen;
+}
+
+.disowned {
+    stroke: darkred;
+}
+
 .f:focus, .m:focus, .u:focus, .x:focus, .c:focus {
     outline: none !important;
+}
+
+.f:hover, .m:hover, .u:hover, .x:hover, .c:hover, .dead:hover {
+    cursor: pointer;
 }
 
 .f {
