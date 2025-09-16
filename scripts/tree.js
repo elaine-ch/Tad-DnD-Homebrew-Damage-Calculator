@@ -120,7 +120,7 @@ colours:nd_colours, dims:nd_dims, config:nd_config }; }
 const familyData = new Map([['griffon', 'griffon'], ['antoine', 'griffon'],['pallas', 'griffon'], ['calliope', 'calliope'], ['douglas', 'douglas'], 
     ['bacardi', 'douglas'], ['kratos', 'douglas'], ['brittany', 'brittany'], ['everclear', 'brittany'], ['nike', 'brittany'], ['picard', 'picard'], 
     ['polmos', 'picard'], ['aspyrtus', 'picard'], ['beverly', 'beverly'], ['bernard', 'bernard'], ['absinthe', 'bernard'], ['orpheus', 'bernard'], 
-    ['perth', 'perth'], ['videl', 'videl'], ['elaine', 'elaine'], ['poitin', 'poitin'], ['bia', 'bia'], ['dewey', 'dewey'], ['cecily', 'cecily'], 
+    ['perth', 'perth'], ['videl', 'videl'], ['elaine', 'elaine'], ['poitin', 'elaine'], ['bia', 'elaine'], ['dewey', 'dewey'], ['cecily', 'cecily'], 
     ['aurelia', 'cecily'], ['marguerite', 'cecily'], ['andres', 'andres'], ['natalie', 'natalie'], ['antoinette', 'natalie'], ['ecclesia', 'natalie'], 
     ['elijah', 'elijah'], ['alexander', 'alexander'], ['maximilien', 'alexander'], ['graham', 'alexander'], ['aria', 'aria'], ['mathias', 'mathias'], 
     ['lafayette', 'mathias'], ['vladimir', 'mathias'], ['elisa', 'elisa'], ['jean', 'jean'], ['hubert', 'jean'], ['lazarus', 'jean'], ['lucretia', 'lucretia'], 
@@ -136,8 +136,8 @@ const familyData = new Map([['griffon', 'griffon'], ['antoine', 'griffon'],['pal
     ['bartholomew', 'marcus'], ['quinn', 'quinn'], ['eveil', 'quinn'], ['angie', 'quinn']]);
 
 function firstNameOf(full) {
-  let first = (full || '').toLowerCase().trim().replace('&apos;', '').replace('&#x2019;', '').replace('&#x00ED;', 'i')
-  .replace('&#x00E9;', 'e').replace('&#x00E8;', 'e').replace('&#x00C9;', 'e') || '';
+  let first = (full || '').toLowerCase().trim().replace('&apos;', '').replace('\'', '').replace('&#x2019;', '').replace('í', 'i')
+  .replace('é', 'e').replace('è', 'e').replace('É', 'e') || '';
   return familyData.get(first) || '';
 }
 
