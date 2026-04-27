@@ -100,8 +100,8 @@ function calculateDefense() {
     const physicalDefense = parseFloat(document.getElementById('physicalDefense').value) || 0;
     const magicDefense = parseFloat(document.getElementById('magicDefense').value) || 0;
 
-    let physDamage = physicalDamage - Math.ceil(physicalDefense / 2);
-    let magDamage = magicDamage - Math.ceil(magicDefense / 4);
+    let physDamage = physicalDamage - physicalDefense / 2;
+    let magDamage = magicDamage - magicDefense / 4;
 
     const finalPhysicalDamage = physDamage < 0 ? 0 : physDamage;
     const finalMagicDamage = magDamage < 0 ? 0 : magDamage;
