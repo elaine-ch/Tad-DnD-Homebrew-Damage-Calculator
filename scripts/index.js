@@ -107,7 +107,7 @@ function calculateDefense() {
     const finalMagicDamage = magDamage < 0 ? 0 : magDamage;
 
     setOutput(
-        `Final Damage: ${formatValue(finalPhysicalDamage)} physical and ${formatValue(finalMagicDamage)} magic damage`
+        `${formatValue(finalPhysicalDamage + finalMagicDamage)} final damage`
     );
 }
 
