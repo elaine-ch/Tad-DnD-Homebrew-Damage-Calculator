@@ -117,7 +117,430 @@ if (typeof nd_index !== 'undefined') { nd_index[""] = {title:'TreeRichelieuAyers
 personalNames:nd_personalNames, parentFam:nd_parentFam, spouseFam:nd_spouseFam, famParents:nd_famParents, famChildren:nd_famChildren, 
 colours:nd_colours, dims:nd_dims, config:nd_config }; }
 
-const familyData = new Map([['griffon', 'griffon'], ['antoine', 'griffon'],['pallas', 'griffon'], ['calliope', 'calliope'], ['douglas', 'douglas'], 
+const defaultMap = [
+    ["Griffon", `<text x="220.00" y="50.00" dy="2.162em">Griffon</text>
+        <text x="220.00" y="50.00" dy="3.362em">Richelieu-</text>
+        <text x="220.00" y="50.00" dy="4.562em">Ayers</text>`], 
+    ["Calliope", `<text x="1260.00" y="50.00" dy="2.162em">Calliope</text>
+        <text x="1260.00" y="50.00" dy="3.362em">Richelieu-</text>
+        <text x="1260.00" y="50.00" dy="4.562em">Ayers</text>`],
+    ["Douglas", `<text x="155.00" y="180.00" dy="2.162em">Douglas</text>
+        <text x="155.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="155.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Brittany", `<text x="545.00" y="180.00" dy="2.162em">Brittany</text>
+        <text x="545.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="545.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Picard", `<text x="1325.00" y="180.00" dy="2.162em">Picard</text>
+        <text x="1325.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="1325.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Bernard", `<text x="1715.00" y="180.00" dy="2.162em">Bernard</text>
+        <text x="1715.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="1715.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Elaine", `<text x="2625.00" y="180.00" dy="2.162em">Elaine</text>
+        <text x="2625.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="2625.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Sharon", `<text x="285.00" y="180.00" dy="2.162em">Sharon</text>
+        <text x="285.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="285.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Perth", `<text x="805.00" y="180.00" dy="2.762em">Perth de</text>
+        <text x="805.00" y="180.00" dy="3.962em">Intrigant</text>`],
+    ["Beverly", `<text x="1585.00" y="180.00" dy="2.762em">Beverly de</text>
+        <text x="1585.00" y="180.00" dy="3.962em">Retinue</text>`],
+    ["Videl", `<text x="2105.00" y="180.00" dy="2.162em">Videl</text>
+        <text x="2105.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="2105.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Dewey", `<text x="2885.00" y="180.00" dy="2.762em">Dewey de</text>
+        <text x="2885.00" y="180.00" dy="3.962em">J&apos;Aime</text>`],
+    ["Cecily", `<text x="220.00" y="310.00" dy="2.162em">Cecily</text>
+        <text x="220.00" y="310.00" dy="3.362em">Richelieu-</text>
+        <text x="220.00" y="310.00" dy="4.562em">Ayers</text>`],
+    ["Andres", `<text x="350.00" y="310.00" dy="2.762em">Andr&#x00E9;s de</text>
+        <text x="350.00" y="310.00" dy="3.962em">Valera</text>`],
+    ["Natalie", `<text x="480.00" y="310.00" dy="2.762em">Natalie de</text>
+        <text x="480.00" y="310.00" dy="3.962em">Barlowe</text>`],
+    ["Elijah", `<text x="610.00" y="310.00" dy="2.762em">Elijah de</text>
+        <text x="610.00" y="310.00" dy="3.962em">Barlowe</text>`],
+    ["Alexander", `<text x="740.00" y="310.00" dy="2.762em">Alexander de</text>
+        <text x="740.00" y="310.00" dy="3.962em">Intrigant</text>`],
+    ["Aria", `<text x="1000.00" y="310.00" dy="2.762em">Aria de</text>
+        <text x="1000.00" y="310.00" dy="3.962em">Tristesse</text>`],
+    ["Mathias", `<text x="1130.00" y="310.00" dy="2.762em">Mathias de</text>
+        <text x="1130.00" y="310.00" dy="3.962em">Intrigant</text>`],
+    ["Elisa", `<text x="1260.00" y="310.00" dy="2.762em">Elisa de</text>
+        <text x="1260.00" y="310.00" dy="3.962em">Morte</text>`],
+    ["Jean", `<text x="1390.00" y="310.00" dy="2.762em">Jean de</text>
+        <text x="1390.00" y="310.00" dy="3.962em">Retinue</text>`],
+    ["Lucretia", `<text x="1520.00" y="310.00" dy="2.762em">Lucretia de</text>
+        <text x="1520.00" y="310.00" dy="3.962em">Retinue</text>`],
+    ["Pierre", `<text x="1650.00" y="310.00" dy="2.162em">Pierre</text>
+        <text x="1650.00" y="310.00" dy="3.362em">Richelieu-</text>
+        <text x="1650.00" y="310.00" dy="4.562em">Ayers</text>`],
+    ["Souline", `<text x="1780.00" y="310.00" dy="2.762em">Souline de</text>
+        <text x="1780.00" y="310.00" dy="3.962em">Cadavre</text>`],
+    ["Theresa", `<text x="1910.00" y="310.00" dy="2.162em">Theresa</text>
+        <text x="1910.00" y="310.00" dy="3.362em">Richelieu-</text>
+        <text x="1910.00" y="310.00" dy="4.562em">Ayers</text>`],
+    ["Timone", `<text x="2040.00" y="310.00" dy="2.762em">Timone de</text>
+        <text x="2040.00" y="310.00" dy="3.962em">Armas</text>`],
+    ["Camille", `<text x="2170.00" y="310.00" dy="2.162em">Camille</text>
+        <text x="2170.00" y="310.00" dy="3.362em">Richelieu-</text>
+        <text x="2170.00" y="310.00" dy="4.562em">Ayers</text>`],
+    ["Cooper", `<text x="2300.00" y="310.00" dy="2.762em">Cooper de</text>
+        <text x="2300.00" y="310.00" dy="3.962em">Chauncey</text>`],
+    ["Gaspard", `<text x="2430.00" y="310.00" dy="2.162em">Gaspard</text>
+        <text x="2430.00" y="310.00" dy="3.362em">Richelieu-</text>
+        <text x="2430.00" y="310.00" dy="4.562em">Ayers</text>`],
+    ["Emma", `<text x="2560.00" y="310.00" dy="2.762em">Emma de</text>
+        <text x="2560.00" y="310.00" dy="3.962em">El&#x00E9;ison</text>`],
+    ["Andrew", `<text x="2690.00" y="310.00" dy="2.762em">Andrew de</text>
+        <text x="2690.00" y="310.00" dy="3.962em">J&apos;Aime</text>`],
+    ["Andrea", `<text x="2820.00" y="310.00" dy="2.762em">Andrea de</text>
+        <text x="2820.00" y="310.00" dy="3.962em">J&apos;Aime</text>`],
+    ["Percival", `<text x="155.00" y="440.00" dy="2.762em">Percival de</text>
+        <text x="155.00" y="440.00" dy="3.962em">Valera</text>`],
+    ["Marie", `<text x="285.00" y="440.00" dy="2.762em">Marie de</text>
+        <text x="285.00" y="440.00" dy="3.962em">Valera</text>`],
+    ["Nicolas", `<text x="415.00" y="440.00" dy="2.762em">Nicolas de</text>
+        <text x="415.00" y="440.00" dy="3.962em">Barlowe</text>`],
+    ["Sonya", `<text x="545.00" y="440.00" dy="2.762em">Sonya de</text>
+        <text x="545.00" y="440.00" dy="3.962em">Tromp&#x00E9;</text>`],
+    ["Natasha", `<text x="675.00" y="440.00" dy="2.762em">Natasha de</text>
+        <text x="675.00" y="440.00" dy="3.962em">Bezukhov</text>`],
+    ["Dominic", `<text x="805.00" y="440.00" dy="2.762em">Dominic de</text>
+        <text x="805.00" y="440.00" dy="3.962em">Bezukhov</text>`],
+    ["Anna", `<text x="935.00" y="440.00" dy="2.762em">Anna de</text>
+        <text x="935.00" y="440.00" dy="3.962em">Bartley</text>`],
+    ["Dmitrii", `<text x="1065.00" y="440.00" dy="2.762em">Dmitrii de</text>
+        <text x="1065.00" y="440.00" dy="3.962em">Bartley</text>`],
+    ["Paul", `<text x="1195.00" y="440.00" dy="2.762em">Paul de</text>
+        <text x="1195.00" y="440.00" dy="3.962em">Intrigant</text>`],
+    ["Amelia", `<text x="1325.00" y="440.00" dy="2.762em">Amelia de</text>
+        <text x="1325.00" y="440.00" dy="3.962em">Victoria</text>`],
+    ["Lily", `<text x="1715.00" y="440.00" dy="2.162em">Lily</text>
+        <text x="1715.00" y="440.00" dy="3.362em">Richelieu-</text>
+        <text x="1715.00" y="440.00" dy="4.562em">Ayers</text>`],
+    ["Vera", `<text x="1845.00" y="440.00" dy="2.762em">Vera de</text>
+        <text x="1845.00" y="440.00" dy="3.962em">Armas</text>`],
+    ["Elysia", `<text x="1975.00" y="440.00" dy="2.762em">Elysia de</text>
+        <text x="1975.00" y="440.00" dy="3.962em">Armas</text>`],
+    ["Chauncey", `<text x="2235.00" y="440.00" dy="2.162em">Chauncey</text>
+        <text x="2235.00" y="440.00" dy="3.362em">Richelieu-</text>
+        <text x="2235.00" y="440.00" dy="4.562em">Ayers</text>`],
+    ["Marcus", `<text x="2365.00" y="440.00" dy="2.162em">Marcus</text>
+        <text x="2365.00" y="440.00" dy="3.362em">Richelieu-</text>
+        <text x="2365.00" y="440.00" dy="4.562em">Ayers</text>`],
+    ["Quinn", `<text x="2495.00" y="440.00" dy="2.162em">Quinn</text>
+        <text x="2495.00" y="440.00" dy="3.362em">Richelieu-</text>
+        <text x="2495.00" y="440.00" dy="4.562em">Ayers</text>`]
+];
+
+const fourMap = [
+    ["Griffon", `<text x="220.00" y="50.00" dy="2.162em">Pallas</text>
+        <text x="220.00" y="50.00" dy="3.362em">Richelieu-</text>
+        <text x="220.00" y="50.00" dy="4.562em">Ayers</text>`], 
+    ["Calliope", `<text x="1260.00" y="50.00" dy="2.162em">Calliope</text>
+        <text x="1260.00" y="50.00" dy="3.362em">Richelieu-</text>
+        <text x="1260.00" y="50.00" dy="4.562em">Ayers</text>`],
+    ["Douglas", `<text x="155.00" y="180.00" dy="2.162em">Kratos</text>
+        <text x="155.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="155.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Brittany", `<text x="545.00" y="180.00" dy="2.162em">Nike</text>
+        <text x="545.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="545.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Picard", `<text x="1325.00" y="180.00" dy="2.162em">Aspyrtus</text>
+        <text x="1325.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="1325.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Bernard", `<text x="1715.00" y="180.00" dy="2.162em">Orpheus</text>
+        <text x="1715.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="1715.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Elaine", `<text x="2625.00" y="180.00" dy="2.162em">Bia</text>
+        <text x="2625.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="2625.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Sharon", `<text x="285.00" y="180.00" dy="2.162em">Sharon</text>
+        <text x="285.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="285.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Perth", `<text x="805.00" y="180.00" dy="2.762em">Perth de</text>
+        <text x="805.00" y="180.00" dy="3.962em">Intrigant</text>`],
+    ["Beverly", `<text x="1585.00" y="180.00" dy="2.762em">Beverly de</text>
+        <text x="1585.00" y="180.00" dy="3.962em">Retinue</text>`],
+    ["Videl", `<text x="2105.00" y="180.00" dy="2.162em">Videl</text>
+        <text x="2105.00" y="180.00" dy="3.362em">Richelieu-</text>
+        <text x="2105.00" y="180.00" dy="4.562em">Ayers</text>`],
+    ["Dewey", `<text x="2885.00" y="180.00" dy="2.762em">Dewey de</text>
+        <text x="2885.00" y="180.00" dy="3.962em">J&apos;Aime</text>`],
+    ["Cecily", `<text x="220.00" y="310.00" dy="2.162em">Marguerite</text>
+        <text x="220.00" y="310.00" dy="3.362em">Richelieu-</text>
+        <text x="220.00" y="310.00" dy="4.562em">Ayers</text>`],
+    ["Andres", `<text x="350.00" y="310.00" dy="2.762em">Andr&#x00E9;s de</text>
+        <text x="350.00" y="310.00" dy="3.962em">Valera</text>`],
+    ["Natalie", `<text x="480.00" y="310.00" dy="2.762em">Ecclesia de</text>
+        <text x="480.00" y="310.00" dy="3.962em">Barlowe</text>`],
+    ["Elijah", `<text x="610.00" y="310.00" dy="2.762em">Elijah de</text>
+        <text x="610.00" y="310.00" dy="3.962em">Barlowe</text>`],
+    ["Alexander", `<text x="740.00" y="310.00" dy="2.762em">Graham de</text>
+        <text x="740.00" y="310.00" dy="3.962em">Intrigant</text>`],
+    ["Aria", `<text x="1000.00" y="310.00" dy="2.762em">Aria de</text>
+        <text x="1000.00" y="310.00" dy="3.962em">Tristesse</text>`],
+    ["Mathias", `<text x="1130.00" y="310.00" dy="2.762em">Vladimir de</text>
+        <text x="1130.00" y="310.00" dy="3.962em">Intrigant</text>`],
+    ["Elisa", `<text x="1260.00" y="310.00" dy="2.762em">Elisa de</text>
+        <text x="1260.00" y="310.00" dy="3.962em">Morte</text>`],
+    ["Jean", `<text x="1390.00" y="310.00" dy="2.762em">Lazarus de</text>
+        <text x="1390.00" y="310.00" dy="3.962em">Retinue</text>`],
+    ["Lucretia", `<text x="1520.00" y="310.00" dy="2.762em">Bethandy de</text>
+        <text x="1520.00" y="310.00" dy="3.962em">Retinue</text>`],
+    ["Pierre", `<text x="1650.00" y="310.00" dy="2.162em">Klaus</text>
+        <text x="1650.00" y="310.00" dy="3.362em">Richelieu-</text>
+        <text x="1650.00" y="310.00" dy="4.562em">Ayers</text>`],
+    ["Souline", `<text x="1780.00" y="310.00" dy="2.762em">Souline de</text>
+        <text x="1780.00" y="310.00" dy="3.962em">Cadavre</text>`],
+    ["Theresa", `<text x="1910.00" y="310.00" dy="2.162em">Iris</text>
+        <text x="1910.00" y="310.00" dy="3.362em">Richelieu-</text>
+        <text x="1910.00" y="310.00" dy="4.562em">Ayers</text>`],
+    ["Timone", `<text x="2040.00" y="310.00" dy="2.762em">Timone de</text>
+        <text x="2040.00" y="310.00" dy="3.962em">Armas</text>`],
+    ["Camille", `<text x="2170.00" y="310.00" dy="2.162em">Eva</text>
+        <text x="2170.00" y="310.00" dy="3.362em">Richelieu-</text>
+        <text x="2170.00" y="310.00" dy="4.562em">Ayers</text>`],
+    ["Cooper", `<text x="2300.00" y="310.00" dy="2.762em">Cooper de</text>
+        <text x="2300.00" y="310.00" dy="3.962em">Chauncey</text>`],
+    ["Gaspard", `<text x="2430.00" y="310.00" dy="2.162em">Rudolf</text>
+        <text x="2430.00" y="310.00" dy="3.362em">Richelieu-</text>
+        <text x="2430.00" y="310.00" dy="4.562em">Ayers</text>`],
+    ["Emma", `<text x="2560.00" y="310.00" dy="2.762em">Emma de</text>
+        <text x="2560.00" y="310.00" dy="3.962em">El&#x00E9;ison</text>`],
+    ["Andrew", `<text x="2690.00" y="310.00" dy="2.762em">Duke de</text>
+        <text x="2690.00" y="310.00" dy="3.962em">J&apos;Aime</text>`],
+    ["Andrea", `<text x="2820.00" y="310.00" dy="2.762em">Rianna de</text>
+        <text x="2820.00" y="310.00" dy="3.962em">J&apos;Aime</text>`],
+    ["Percival", `<text x="155.00" y="440.00" dy="2.762em">Felix de</text>
+        <text x="155.00" y="440.00" dy="3.962em">Valera</text>`],
+    ["Marie", `<text x="285.00" y="440.00" dy="2.762em">Beatrix de</text>
+        <text x="285.00" y="440.00" dy="3.962em">Valera</text>`],
+    ["Nicolas", `<text x="415.00" y="440.00" dy="2.762em">Albus de</text>
+        <text x="415.00" y="440.00" dy="3.962em">Barlowe</text>`],
+    ["Sonya", `<text x="545.00" y="440.00" dy="2.762em">Sonya de</text>
+        <text x="545.00" y="440.00" dy="3.962em">Tromp&#x00E9;</text>`],
+    ["Natasha", `<text x="675.00" y="440.00" dy="2.762em">Shannon de</text>
+        <text x="675.00" y="440.00" dy="3.962em">Bezukhov</text>`],
+    ["Dominic", `<text x="805.00" y="440.00" dy="2.762em">Dominic de</text>
+        <text x="805.00" y="440.00" dy="3.962em">Bezukhov</text>`],
+    ["Anna", `<text x="935.00" y="440.00" dy="2.762em">Celia de</text>
+        <text x="935.00" y="440.00" dy="3.962em">Bartley</text>`],
+    ["Dmitrii", `<text x="1065.00" y="440.00" dy="2.762em">Dmitrii de</text>
+        <text x="1065.00" y="440.00" dy="3.962em">Bartley</text>`],
+    ["Paul", `<text x="1195.00" y="440.00" dy="2.762em">Adrian de</text>
+        <text x="1195.00" y="440.00" dy="3.962em">Intrigant</text>`],
+    ["Amelia", `<text x="1325.00" y="440.00" dy="2.762em">Amelia de</text>
+        <text x="1325.00" y="440.00" dy="3.962em">Victoria</text>`],
+    ["Lily", `<text x="1715.00" y="440.00" dy="2.162em">Jessica</text>
+        <text x="1715.00" y="440.00" dy="3.362em">Richelieu-</text>
+        <text x="1715.00" y="440.00" dy="4.562em">Ayers</text>`],
+    ["Vera", `<text x="1845.00" y="440.00" dy="2.762em">Ambrosia de</text>
+        <text x="1845.00" y="440.00" dy="3.962em">Armas</text>`],
+    ["Elysia", `<text x="1975.00" y="440.00" dy="2.762em">Maria de</text>
+        <text x="1975.00" y="440.00" dy="3.962em">Armas</text>`],
+    ["Chauncey", `<text x="2235.00" y="440.00" dy="2.162em">Georges</text>
+        <text x="2235.00" y="440.00" dy="3.362em">Richelieu-</text>
+        <text x="2235.00" y="440.00" dy="4.562em">Ayers</text>`],
+    ["Marcus", `<text x="2365.00" y="440.00" dy="2.162em">Bartholomew</text>
+        <text x="2365.00" y="440.00" dy="3.362em">Richelieu-</text>
+        <text x="2365.00" y="440.00" dy="4.562em">Ayers</text>`],
+    ["Quinn", `<text x="2495.00" y="440.00" dy="2.162em">Angie</text>
+        <text x="2495.00" y="440.00" dy="3.362em">Richelieu-</text>
+        <text x="2495.00" y="440.00" dy="4.562em">Ayers</text>`]
+];
+
+const threeMap = [
+    ["Griffon", `<text x="220.00" y="50.00" dy="2.762em">Griffon</text>
+        <text x="220.00" y="50.00" dy="3.962em">Antoine</text>`], 
+    ["Calliope", `<text x="1260.00" y="50.00" dy="3.362em">Calliope</text>`],//
+    ["Douglas", `<text x="155.00" y="180.00" dy="2.762em">Douglas</text>
+        <text x="155.00" y="180.00" dy="3.962em">Bacardi</text>`],
+    ["Brittany", `<text x="545.00" y="180.00" dy="2.762em">Brittany</text>
+        <text x="545.00" y="180.00" dy="3.962em">Everclear</text>`],
+    ["Picard", `<text x="1325.00" y="180.00" dy="2.762em">Picard</text>
+        <text x="1325.00" y="180.00" dy="3.962em">Polmos</text>`],
+    ["Bernard", `<text x="1715.00" y="180.00" dy="2.762em">Bernard</text>
+        <text x="1715.00" y="180.00" dy="3.962em">Absinthe</text>`],
+    ["Elaine", `<text x="2625.00" y="180.00" dy="2.762em">Elaine</text>
+        <text x="2625.00" y="180.00" dy="3.962em">Poit&#x00ED;n</text>`],
+    ["Sharon", `<text x="285.00" y="180.00" dy="3.362em">Sharon</text>`],//
+    ["Perth", `<text x="805.00" y="180.00" dy="3.362em">Perth</text>`],//
+    ["Beverly", `<text x="1585.00" y="180.00" dy="3.362em">Beverly</text>`],//
+    ["Videl", `<text x="2105.00" y="180.00" dy="3.362em">Videl</text>`],//
+    ["Dewey", `<text x="2885.00" y="180.00" dy="3.362em">Dewey</text>`],//
+    ["Cecily", `<text x="220.00" y="310.00" dy="2.762em">Cecily</text>
+        <text x="220.00" y="310.00" dy="3.962em">Aurelia</text>`],
+    ["Andres", `<text x="350.00" y="310.00" dy="3.362em">Andr&#x00E9;s</text>`],//
+    ["Natalie", `<text x="480.00" y="310.00" dy="2.762em">Natalie</text>
+        <text x="480.00" y="310.00" dy="3.962em">Antoinette</text>`],
+    ["Elijah", `<text x="610.00" y="310.00" dy="3.362em">Elijah</text>`],//
+    ["Alexander", `<text x="740.00" y="310.00" dy="2.762em">Alexander</text>
+        <text x="740.00" y="310.00" dy="3.962em">Maximilien</text>`],
+    ["Aria", `<text x="1000.00" y="310.00" dy="3.362em">Aria</text>`],//
+    ["Mathias", `<text x="1130.00" y="310.00" dy="2.762em">Mathias</text>
+        <text x="1130.00" y="310.00" dy="3.962em">Lafayette</text>`],
+    ["Elisa", `<text x="1260.00" y="310.00" dy="3.362em">Elisa</text>`],//
+    ["Jean", `<text x="1390.00" y="310.00" dy="2.762em">Jean</text>
+        <text x="1390.00" y="310.00" dy="3.962em">Hubert</text>`],
+    ["Lucretia", `<text x="1520.00" y="310.00" dy="2.762em">Lucretia</text>
+        <text x="1520.00" y="310.00" dy="3.962em">Clarisse</text>`],
+    ["Pierre", `<text x="1650.00" y="310.00" dy="2.762em">Pierre</text>
+        <text x="1650.00" y="310.00" dy="3.962em">Cercueil</text>`],
+    ["Souline", `<text x="1780.00" y="310.00" dy="3.362em">Souline</text>`],//
+    ["Theresa", `<text x="1910.00" y="310.00" dy="2.762em">Theresa</text>
+        <text x="1910.00" y="310.00" dy="3.962em">Miroir</text>`],
+    ["Timone", `<text x="2040.00" y="310.00" dy="3.362em">Timone</text>`],//
+    ["Camille", `<text x="2170.00" y="310.00" dy="2.762em">Camille</text>
+        <text x="2170.00" y="310.00" dy="3.962em">Medea</text>`],
+    ["Cooper", `<text x="2300.00" y="310.00" dy="3.362em">Cooper</text>`],//
+    ["Gaspard", `<text x="2430.00" y="310.00" dy="2.762em">Gaspard</text>
+        <text x="2430.00" y="310.00" dy="3.962em">Franc</text>`],
+    ["Emma", `<text x="2560.00" y="310.00" dy="3.362em">Emma</text>`],//
+    ["Andrew", `<text x="2690.00" y="310.00" dy="2.762em">Andrew</text>
+        <text x="2690.00" y="310.00" dy="3.962em">Fonce</text>`],
+    ["Andrea", `<text x="2820.00" y="310.00" dy="2.762em">Andrea</text>
+        <text x="2820.00" y="310.00" dy="3.962em">Tak</text>`],
+    ["Percival", `<text x="155.00" y="440.00" dy="3.362em">Felix</text>`],
+    ["Marie", `<text x="285.00" y="440.00" dy="2.762em">Marie</text>
+        <text x="285.00" y="440.00" dy="3.962em">Ali&#x00E9;nor</text>`],
+    ["Nicolas", `<text x="415.00" y="440.00" dy="2.762em">Nicolas</text>
+        <text x="415.00" y="440.00" dy="3.962em">Renaud</text>`],
+    ["Sonya", `<text x="545.00" y="440.00" dy="3.362em">Sonya</text>`],//
+    ["Natasha", `<text x="675.00" y="440.00" dy="2.762em">Natasha</text>
+        <text x="675.00" y="440.00" dy="3.962em">Poule</text>`],
+    ["Dominic", `<text x="805.00" y="440.00" dy="3.362em">Dominic</text>`],//
+    ["Anna", `<text x="935.00" y="440.00" dy="2.762em">Anna</text>
+        <text x="935.00" y="440.00" dy="3.962em">Elizabeth</text>`],
+    ["Dmitrii", `<text x="1065.00" y="440.00" dy="3.362em">Dmitrii</text>`],//
+    ["Paul", `<text x="1195.00" y="440.00" dy="2.762em">Paul</text>
+        <text x="1195.00" y="440.00" dy="3.962em">L&#x2019;Enfant</text>`],
+    ["Amelia", `<text x="1325.00" y="440.00" dy="3.362em">Amelia</text>`],//
+    ["Lily", `<text x="1715.00" y="440.00" dy="2.762em">Lily</text>
+        <text x="1715.00" y="440.00" dy="3.962em">Consacr&#x00E9;es</text>`],
+    ["Vera", `<text x="1845.00" y="440.00" dy="3.362em">Rosa</text>`],
+    ["Elysia", `<text x="1975.00" y="440.00" dy="2.762em">Elysia</text>
+        <text x="1975.00" y="440.00" dy="3.962em">Orphelia</text>`],
+    ["Chauncey", `<text x="2235.00" y="440.00" dy="2.762em">Chauncey</text>
+        <text x="2235.00" y="440.00" dy="3.962em">Mod&#x00E8;le</text>`],
+    ["Marcus", `<text x="2365.00" y="440.00" dy="2.762em">Marcus</text>
+        <text x="2365.00" y="440.00" dy="3.962em">Refoulement</text>`],
+    ["Quinn", `<text x="2495.00" y="440.00" dy="2.762em">Quinn</text>
+        <text x="2495.00" y="440.00" dy="3.962em">&#x00C9;veil</text>`]
+];
+
+const twoMap = [
+    ["Griffon", `<text x="220.00" y="50.00" dy="3.362em">Griffon</text>`], 
+    ["Calliope", `<text x="1260.00" y="50.00" dy="3.362em">Calliope</text>`],//
+    ["Douglas", `<text x="155.00" y="180.00" dy="3.362em">Douglas</text>`],
+    ["Brittany", `<text x="545.00" y="180.00" dy="3.362em">Brittany</text>`],
+    ["Picard", `<text x="1325.00" y="180.00" dy="3.362em">Picard</text>`],
+    ["Bernard", `<text x="1715.00" y="180.00" dy="3.362em">Bernard</text>`],
+    ["Elaine", `<text x="2625.00" y="180.00" dy="3.362em">Elaine</text>`],
+    ["Sharon", `<text x="285.00" y="180.00" dy="3.362em">Sharon</text>`],//
+    ["Perth", `<text x="805.00" y="180.00" dy="3.362em">Perth</text>`],//
+    ["Beverly", `<text x="1585.00" y="180.00" dy="3.362em">Beverly</text>`],//
+    ["Videl", `<text x="2105.00" y="180.00" dy="3.362em">Videl</text>`],//
+    ["Dewey", `<text x="2885.00" y="180.00" dy="3.362em">Dewey</text>`],//
+    ["Cecily", `<text x="220.00" y="310.00" dy="3.362em">Cecily</text>`],
+    ["Andres", `<text x="350.00" y="310.00" dy="3.362em">Andr&#x00E9;s</text>`],//
+    ["Natalie", `<text x="480.00" y="310.00" dy="3.362em">Natalie</text>`],
+    ["Elijah", `<text x="610.00" y="310.00" dy="3.362em">Elijah</text>`],//
+    ["Alexander", `<text x="740.00" y="310.00" dy="3.362em">Alexander</text>`],
+    ["Aria", `<text x="1000.00" y="310.00" dy="3.362em">Aria</text>`],//
+    ["Mathias", `<text x="1130.00" y="310.00" dy="3.362em">Mathias</text>`],
+    ["Elisa", `<text x="1260.00" y="310.00" dy="3.362em">Elisa</text>`],//
+    ["Jean", `<text x="1390.00" y="310.00" dy="3.362em">Jean</text>`],
+    ["Lucretia", `<text x="1520.00" y="310.00" dy="3.362em">Lucretia</text>`],
+    ["Pierre", `<text x="1650.00" y="310.00" dy="3.362em">Pierre</text>`],
+    ["Souline", `<text x="1780.00" y="310.00" dy="3.362em">Souline</text>`],//
+    ["Theresa", `<text x="1910.00" y="310.00" dy="3.362em">Theresa</text>`],
+    ["Timone", `<text x="2040.00" y="310.00" dy="3.362em">Timone</text>`],//
+    ["Camille", `<text x="2170.00" y="310.00" dy="3.362em">Camille</text>`],
+    ["Cooper", `<text x="2300.00" y="310.00" dy="3.362em">Cooper</text>`],//
+    ["Gaspard", `<text x="2430.00" y="310.00" dy="3.362em">Gaspard</text>`],
+    ["Emma", `<text x="2560.00" y="310.00" dy="3.362em">Emma</text>`],//
+    ["Andrew", `<text x="2690.00" y="310.00" dy="3.362em">Andrew</text>`],
+    ["Andrea", `<text x="2820.00" y="310.00" dy="3.362em">Andrea</text>`],
+    ["Percival", `<text x="155.00" y="440.00" dy="3.362em">Felix</text>`],
+    ["Marie", `<text x="285.00" y="440.00" dy="3.362em">Ali&#x00E9;nor</text>`],
+    ["Nicolas", `<text x="415.00" y="440.00" dy="3.362em">Nicolas</text>`],
+    ["Sonya", `<text x="545.00" y="440.00" dy="3.362em">Sonya</text>`],//
+    ["Natasha", `<text x="675.00" y="440.00" dy="3.362em">Natasha</text>`],
+    ["Dominic", `<text x="805.00" y="440.00" dy="3.362em">Dominic</text>`],//
+    ["Anna", `<text x="935.00" y="440.00" dy="3.362em">Anna</text>`],
+    ["Dmitrii", `<text x="1065.00" y="440.00" dy="3.362em">Dmitrii</text>`],//
+    ["Paul", `<text x="1195.00" y="440.00" dy="3.362em">Paul</text>`],
+    ["Amelia", `<text x="1325.00" y="440.00" dy="3.362em">Amelia</text>`],//
+    ["Lily", `<text x="1715.00" y="440.00" dy="3.362em">Lily</text>`],
+    ["Vera", `<text x="1845.00" y="440.00" dy="3.362em">Rosa</text>`],
+    ["Elysia", `<text x="1975.00" y="440.00" dy="3.362em">Elysia</text>`],
+    ["Chauncey", `<text x="2235.00" y="440.00" dy="3.362em">Chauncey</text>`],
+    ["Marcus", `<text x="2365.00" y="440.00" dy="3.362em">Marcus</text>`],
+    ["Quinn", `<text x="2495.00" y="440.00" dy="3.362em">Quinn</text>`]
+];
+
+const oneMap = [
+    ["Griffon", `<text x="220.00" y="50.00" dy="3.362em">Griffon</text>`], 
+    ["Calliope", `<text x="1260.00" y="50.00" dy="3.362em">Calliope</text>`],//
+    ["Douglas", `<text x="155.00" y="180.00" dy="3.362em">Douglas</text>`],
+    ["Brittany", `<text x="545.00" y="180.00" dy="3.362em">Brittany</text>`],
+    ["Picard", `<text x="1325.00" y="180.00" dy="3.362em">Picard</text>`],
+    ["Bernard", `<text x="1715.00" y="180.00" dy="3.362em">Bernard</text>`],
+    ["Elaine", `<text x="2625.00" y="180.00" dy="3.362em">Elaine</text>`],
+    ["Sharon", `<text x="285.00" y="180.00" dy="3.362em">Sharon</text>`],//
+    ["Perth", `<text x="805.00" y="180.00" dy="3.362em">Perth</text>`],//
+    ["Beverly", `<text x="1585.00" y="180.00" dy="3.362em">Beverly</text>`],//
+    ["Videl", `<text x="2105.00" y="180.00" dy="3.362em">Videl</text>`],//
+    ["Dewey", `<text x="2885.00" y="180.00" dy="3.362em">Dewey</text>`],//
+    ["Cecily", `<text x="220.00" y="310.00" dy="3.362em">Cece</text>`],
+    ["Andres", `<text x="350.00" y="310.00" dy="3.362em">Andr&#x00E9;s</text>`],//
+    ["Natalie", `<text x="480.00" y="310.00" dy="3.362em">Nat</text>`],
+    ["Elijah", `<text x="610.00" y="310.00" dy="3.362em">Elijah</text>`],//
+    ["Alexander", `<text x="740.00" y="310.00" dy="3.362em">Max</text>`],
+    ["Aria", `<text x="1000.00" y="310.00" dy="3.362em">Aria</text>`],//
+    ["Mathias", `<text x="1130.00" y="310.00" dy="3.362em">Mathias</text>`],
+    ["Elisa", `<text x="1260.00" y="310.00" dy="3.362em">Elisa</text>`],//
+    ["Jean", `<text x="1390.00" y="310.00" dy="3.362em">Jean</text>`],
+    ["Lucretia", `<text x="1520.00" y="310.00" dy="3.362em">Lucy</text>`],
+    ["Pierre", `<text x="1650.00" y="310.00" dy="3.362em">Pierre</text>`],
+    ["Souline", `<text x="1780.00" y="310.00" dy="3.362em">Souline</text>`],//
+    ["Theresa", `<text x="1910.00" y="310.00" dy="3.362em">Tess</text>`],
+    ["Timone", `<text x="2040.00" y="310.00" dy="3.362em">Timone</text>`],//
+    ["Camille", `<text x="2170.00" y="310.00" dy="3.362em">Mimi</text>`],
+    ["Cooper", `<text x="2300.00" y="310.00" dy="3.362em">Cooper</text>`],//
+    ["Gaspard", `<text x="2430.00" y="310.00" dy="3.362em">Gaspard</text>`],
+    ["Emma", `<text x="2560.00" y="310.00" dy="3.362em">Emma</text>`],//
+    ["Andrew", `<text x="2690.00" y="310.00" dy="3.362em">Andrew</text>`],
+    ["Andrea", `<text x="2820.00" y="310.00" dy="3.362em">Andrea</text>`],
+    ["Percival", `<text x="155.00" y="440.00" dy="3.362em">Percy</text>`],
+    ["Marie", `<text x="285.00" y="440.00" dy="3.362em">Alie</text>`],
+    ["Nicolas", `<text x="415.00" y="440.00" dy="3.362em">Nick</text>`],
+    ["Sonya", `<text x="545.00" y="440.00" dy="3.362em">Sonya</text>`],//
+    ["Natasha", `<text x="675.00" y="440.00" dy="3.362em">Tasha</text>`],
+    ["Dominic", `<text x="805.00" y="440.00" dy="3.362em">Dominic</text>`],//
+    ["Anna", `<text x="935.00" y="440.00" dy="3.362em">Anna</text>`],
+    ["Dmitrii", `<text x="1065.00" y="440.00" dy="3.362em">Dmitrii</text>`],//
+    ["Paul", `<text x="1195.00" y="440.00" dy="3.362em">Paul</text>`],
+    ["Amelia", `<text x="1325.00" y="440.00" dy="3.362em">Amelia</text>`],//
+    ["Lily", `<text x="1715.00" y="440.00" dy="3.362em">Lily</text>`],
+    ["Vera", `<text x="1845.00" y="440.00" dy="3.362em">Rosa</text>`],
+    ["Elysia", `<text x="1975.00" y="440.00" dy="3.362em">Elysia</text>`],
+    ["Chauncey", `<text x="2235.00" y="440.00" dy="3.362em">Chauncey</text>`],
+    ["Marcus", `<text x="2365.00" y="440.00" dy="3.362em">Marcus</text>`],
+    ["Quinn", `<text x="2495.00" y="440.00" dy="3.362em">Quinn</text>`]
+];
+
+// window.onload = function() {
+//     for (const person of oneMap){
+//         let box = document.getElementById(person[0]);
+//         box.innerHTML = person[1];
+//     }
+// };
+
+
+const searchData = new Map([['griffon', 'griffon'], ['antoine', 'griffon'],['pallas', 'griffon'], ['calliope', 'calliope'], ['douglas', 'douglas'], 
     ['bacardi', 'douglas'], ['kratos', 'douglas'], ['brittany', 'brittany'], ['everclear', 'brittany'], ['nike', 'brittany'], ['picard', 'picard'], 
     ['polmos', 'picard'], ['aspyrtus', 'picard'], ['beverly', 'beverly'], ['bernard', 'bernard'], ['absinthe', 'bernard'], ['orpheus', 'bernard'], 
     ['perth', 'perth'], ['videl', 'videl'], ['elaine', 'elaine'], ['poitin', 'elaine'], ['bia', 'elaine'], ['dewey', 'dewey'], ['cecily', 'cecily'], 
@@ -138,7 +561,7 @@ const familyData = new Map([['griffon', 'griffon'], ['antoine', 'griffon'],['pal
 function firstNameOf(full) {
   let first = (full || '').toLowerCase().trim().replace('&apos;', '').replace('\'', '').replace('&#x2019;', '').replace('í', 'i')
   .replace('é', 'e').replace('è', 'e').replace('É', 'e') || '';
-  return familyData.get(first) || '';
+  return searchData.get(first) || '';
 }
 
 function removeHighlights() {
