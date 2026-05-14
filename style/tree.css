@@ -143,6 +143,24 @@ div.tp-svg {
     overflow: auto;
 }
 
+.tree-panels{
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    pointer-events: none;
+}
+
+.tree-panels > div.tp-female,
+.tree-panels > div.tp-male,
+.tree-panels > div.tp-unk,
+.tree-panels > div.tp-other,
+.tree-panels > div.tp-family {
+    pointer-events: auto;
+}
+
 svg#TreeRichelieuAyers {
     position:absolute; 
     left:0; top:0;
