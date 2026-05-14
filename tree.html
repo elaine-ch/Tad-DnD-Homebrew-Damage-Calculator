@@ -25,11 +25,21 @@
 <main class="page-main">
 <h1>The Richelieu-Ayers Family</h1>
 
-<form id="search-form" class="controls" autocomplete="off">
-    <input id="search-input" type="search" placeholder="Search first or middle name..."/>
-    <button type="submit">Search</button>
-    <button type="button" id="clear-btn" class="secondary">Clear</button>
-</form>
+<div class="controls-row">
+  <form id="search-form" class="controls" autocomplete="off">
+      <input id="search-input" type="search" placeholder="Search first or middle name..."/>
+      <button type="submit">Search</button>
+      <button type="button" id="clear-btn" class="secondary">Clear</button>
+  </form>
+
+  <select id="familiarity-select">
+    <option value="default">Default View</option>
+    <option value="four">Familiarity Level 4</option>
+    <option value="three">Familiarity Level 3</option>
+    <option value="two">Familiarity Level 2</option>
+    <option value="one">Familiarity Level 1</option>
+  </select>
+</div>
 
 <div id="tm_menu" class="tm-menu" style="display:none;"></div>
 
@@ -870,17 +880,27 @@
 <p>Alive</p>
 </div>
 </div>
+
+<p id="level-2-disc">*Note: the slash (/) indicates either is acceptable.</p>
+<div id="color-guide">
+    <p>Color guide:</p>
+    <p>Background: Grey (deceased), Pink (female), Blue (male)</p>
+    <p>Border: Grey (default), Green (main family), Red (disowned)</p>
+</div>
 </main>
 
 <aside id="sidebar" class="sidebar-panel">
+<button type="button" id="sidebar-toggle" class="sidebar-toggle" aria-expanded="true" aria-controls="sidebar-content" aria-label="Collapse sidebar">→</button>
+<div id="sidebar-content" class="sidebar-content">
 <h2>A Guide to Richelieu-Ayers Names</h2>
-<p>Select the level of familiarity in order to change the names listed in the family tree. </p>
-<p id="instr">
-<b>Levels of Familiarity:</b> <br>
+<p id="instr1">Select the level of familiarity in the dropdown menu to change the names in the family tree. </p>
+<p id="instr2">
+<strong>Proper mode of address based on your social standing:</strong> <br>
 <b>4- Lastname, or Lord/Lady Thirdname</b> <i>(Example: Lady Richelieu-Ayers or Lady Eva)</i>. You have no previous existing relationship with them. You are a stranger, a servant, or a passing acquaintance. <br>
 <b>3- Firstname Secondname</b> <i>(Example: Camille Medea)</i>. You are of a lower social rank but hold a higher position of authority, such as a teacher addressing a young member of the family. This is also a formal method of address within the family, between members who aren't close.<br>
 <b>2- Firstname, or Secondname</b> <i>(Example: Camille or Medea)</i>. You are a close friend or family member. Unless you are blood, it is the height of presumptuousness to refer to them like this unless they have explicitly invited you to do so.<br>
 <b>1- Nickname</b> <i>(Example: Mimi)</i>. Family only, and even then only the ones they like. A surefire way of making a powerful enemy if you aren't another Richelieu-Ayers.</p>
+</div>
 </aside>
 </div>
 </body>

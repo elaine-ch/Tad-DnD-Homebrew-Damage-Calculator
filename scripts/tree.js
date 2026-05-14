@@ -447,11 +447,12 @@ const twoMap = [
     ["Andres", `<text x="350.00" y="310.00" dy="3.362em">Andr&#x00E9;s</text>`],//
     ["Natalie", `<text x="480.00" y="310.00" dy="3.362em">Natalie</text>`],
     ["Elijah", `<text x="610.00" y="310.00" dy="3.362em">Elijah</text>`],//
-    ["Alexander", `<text x="740.00" y="310.00" dy="3.362em">Alexander</text>`],
+    ["Alexander", `<text x="740.00" y="310.00" dy="3.362em">Maximilien</text>`],
     ["Aria", `<text x="1000.00" y="310.00" dy="3.362em">Aria</text>`],//
     ["Mathias", `<text x="1130.00" y="310.00" dy="3.362em">Mathias</text>`],
     ["Elisa", `<text x="1260.00" y="310.00" dy="3.362em">Elisa</text>`],//
-    ["Jean", `<text x="1390.00" y="310.00" dy="3.362em">Jean</text>`],
+    ["Jean", `<text x="1390.00" y="310.00" dy="2.762em">Jean /</text>
+        <text x="1390.00" y="310.00" dy="3.962em">Hubert</text>`],
     ["Lucretia", `<text x="1520.00" y="310.00" dy="3.362em">Lucretia</text>`],
     ["Pierre", `<text x="1650.00" y="310.00" dy="3.362em">Pierre</text>`],
     ["Souline", `<text x="1780.00" y="310.00" dy="3.362em">Souline</text>`],//
@@ -459,17 +460,19 @@ const twoMap = [
     ["Timone", `<text x="2040.00" y="310.00" dy="3.362em">Timone</text>`],//
     ["Camille", `<text x="2170.00" y="310.00" dy="3.362em">Camille</text>`],
     ["Cooper", `<text x="2300.00" y="310.00" dy="3.362em">Cooper</text>`],//
-    ["Gaspard", `<text x="2430.00" y="310.00" dy="3.362em">Gaspard</text>`],
+    ["Gaspard", `<text x="2430.00" y="310.00" dy="3.362em">Franc</text>`],
     ["Emma", `<text x="2560.00" y="310.00" dy="3.362em">Emma</text>`],//
     ["Andrew", `<text x="2690.00" y="310.00" dy="3.362em">Andrew</text>`],
-    ["Andrea", `<text x="2820.00" y="310.00" dy="3.362em">Andrea</text>`],
+    ["Andrea", `<text x="2820.00" y="310.00" dy="2.762em">Andrea /</text>
+        <text x="2820.00" y="310.00" dy="3.962em">Tak</text>`],
     ["Percival", `<text x="155.00" y="440.00" dy="3.362em">Felix</text>`],
     ["Marie", `<text x="285.00" y="440.00" dy="3.362em">Ali&#x00E9;nor</text>`],
     ["Nicolas", `<text x="415.00" y="440.00" dy="3.362em">Nicolas</text>`],
     ["Sonya", `<text x="545.00" y="440.00" dy="3.362em">Sonya</text>`],//
     ["Natasha", `<text x="675.00" y="440.00" dy="3.362em">Natasha</text>`],
     ["Dominic", `<text x="805.00" y="440.00" dy="3.362em">Dominic</text>`],//
-    ["Anna", `<text x="935.00" y="440.00" dy="3.362em">Anna</text>`],
+    ["Anna", `<text x="935.00" y="440.00" dy="2.762em">Anna /</text>
+        <text x="935.00" y="440.00" dy="3.962em">Elizabeth</text>`],
     ["Dmitrii", `<text x="1065.00" y="440.00" dy="3.362em">Dmitrii</text>`],//
     ["Paul", `<text x="1195.00" y="440.00" dy="3.362em">Paul</text>`],
     ["Amelia", `<text x="1325.00" y="440.00" dy="3.362em">Amelia</text>`],//
@@ -496,7 +499,7 @@ const oneMap = [
     ["Dewey", `<text x="2885.00" y="180.00" dy="3.362em">Dewey</text>`],//
     ["Cecily", `<text x="220.00" y="310.00" dy="3.362em">Cece</text>`],
     ["Andres", `<text x="350.00" y="310.00" dy="3.362em">Andr&#x00E9;s</text>`],//
-    ["Natalie", `<text x="480.00" y="310.00" dy="3.362em">Nat</text>`],
+    ["Natalie", `<text x="480.00" y="310.00" dy="3.362em">Natalie</text>`],
     ["Elijah", `<text x="610.00" y="310.00" dy="3.362em">Elijah</text>`],//
     ["Alexander", `<text x="740.00" y="310.00" dy="3.362em">Max</text>`],
     ["Aria", `<text x="1000.00" y="310.00" dy="3.362em">Aria</text>`],//
@@ -506,23 +509,23 @@ const oneMap = [
     ["Lucretia", `<text x="1520.00" y="310.00" dy="3.362em">Lucy</text>`],
     ["Pierre", `<text x="1650.00" y="310.00" dy="3.362em">Pierre</text>`],
     ["Souline", `<text x="1780.00" y="310.00" dy="3.362em">Souline</text>`],//
-    ["Theresa", `<text x="1910.00" y="310.00" dy="3.362em">Tess</text>`],
+    ["Theresa", `<text x="1910.00" y="310.00" dy="3.362em">Theresa</text>`],
     ["Timone", `<text x="2040.00" y="310.00" dy="3.362em">Timone</text>`],//
     ["Camille", `<text x="2170.00" y="310.00" dy="3.362em">Mimi</text>`],
     ["Cooper", `<text x="2300.00" y="310.00" dy="3.362em">Cooper</text>`],//
-    ["Gaspard", `<text x="2430.00" y="310.00" dy="3.362em">Gaspard</text>`],
+    ["Gaspard", `<text x="2430.00" y="310.00" dy="3.362em">Franc</text>`],
     ["Emma", `<text x="2560.00" y="310.00" dy="3.362em">Emma</text>`],//
-    ["Andrew", `<text x="2690.00" y="310.00" dy="3.362em">Andrew</text>`],
-    ["Andrea", `<text x="2820.00" y="310.00" dy="3.362em">Andrea</text>`],
+    ["Andrew", `<text x="2690.00" y="310.00" dy="3.362em">Andy</text>`],
+    ["Andrea", `<text x="2820.00" y="310.00" dy="3.362em">Rea</text>`],
     ["Percival", `<text x="155.00" y="440.00" dy="3.362em">Percy</text>`],
     ["Marie", `<text x="285.00" y="440.00" dy="3.362em">Alie</text>`],
     ["Nicolas", `<text x="415.00" y="440.00" dy="3.362em">Nick</text>`],
     ["Sonya", `<text x="545.00" y="440.00" dy="3.362em">Sonya</text>`],//
     ["Natasha", `<text x="675.00" y="440.00" dy="3.362em">Tasha</text>`],
     ["Dominic", `<text x="805.00" y="440.00" dy="3.362em">Dominic</text>`],//
-    ["Anna", `<text x="935.00" y="440.00" dy="3.362em">Anna</text>`],
+    ["Anna", `<text x="935.00" y="440.00" dy="3.362em">Annie</text>`],
     ["Dmitrii", `<text x="1065.00" y="440.00" dy="3.362em">Dmitrii</text>`],//
-    ["Paul", `<text x="1195.00" y="440.00" dy="3.362em">Paul</text>`],
+    ["Paul", `<text x="1195.00" y="440.00" dy="3.362em">Paulie</text>`],
     ["Amelia", `<text x="1325.00" y="440.00" dy="3.362em">Amelia</text>`],//
     ["Lily", `<text x="1715.00" y="440.00" dy="3.362em">Lily</text>`],
     ["Vera", `<text x="1845.00" y="440.00" dy="3.362em">Rosa</text>`],
@@ -532,13 +535,32 @@ const oneMap = [
     ["Quinn", `<text x="2495.00" y="440.00" dy="3.362em">Quinn</text>`]
 ];
 
-// window.onload = function() {
-//     for (const person of oneMap){
-//         let box = document.getElementById(person[0]);
-//         box.innerHTML = person[1];
-//     }
-// };
-
+function adjustNames(mode) {
+    let map = defaultMap;
+    document.getElementById('level-2-disc').style.display = 'none'
+    switch (mode) {
+        case "default":
+            map = defaultMap;
+            break;
+        case "four":
+            map = fourMap;
+            break;
+        case "three":
+            map = threeMap;
+            break;
+        case "two":
+            map = twoMap;
+            document.getElementById('level-2-disc').style.display = 'block'
+            break;
+        case "one":
+            map = oneMap;
+            break;
+    }
+    for(const person of map){
+        let box = document.getElementById(person[0]);
+        box.innerHTML = person[1];
+    }
+}
 
 const searchData = new Map([['griffon', 'griffon'], ['antoine', 'griffon'],['pallas', 'griffon'], ['calliope', 'calliope'], ['douglas', 'douglas'], 
     ['bacardi', 'douglas'], ['kratos', 'douglas'], ['brittany', 'brittany'], ['everclear', 'brittany'], ['nike', 'brittany'], ['picard', 'picard'], 
@@ -598,4 +620,38 @@ function searchHandling(){
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {searchHandling();});
+function initFamiliaritySelect() {
+    const familiaritySelect = document.getElementById('familiarity-select');
+    if (!familiaritySelect) return;
+
+    familiaritySelect.addEventListener('change', (e) => {
+        adjustNames(e.target.value);
+    });
+
+    adjustNames(familiaritySelect.value);
+}
+
+function initSidebarToggle() {
+    const shell = document.querySelector('.page-shell');
+    const toggle = document.getElementById('sidebar-toggle');
+    if (!shell || !toggle) return;
+
+    const syncSidebarState = (collapsed) => {
+        shell.classList.toggle('sidebar-collapsed', collapsed);
+        toggle.textContent = collapsed ? '\u2190' : '\u2192';
+        toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+        toggle.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+    };
+
+    syncSidebarState(false);
+
+    toggle.addEventListener('click', () => {
+        syncSidebarState(!shell.classList.contains('sidebar-collapsed'));
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    searchHandling();
+    initFamiliaritySelect();
+    initSidebarToggle();
+});
