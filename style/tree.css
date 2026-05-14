@@ -214,20 +214,20 @@ div#color-guide {
 } 
 
 p#level-2-disc {
-    font-size: 1vw;
+    font-size: 1rem;
     display: none;
     margin: 0;
 }
 
 p#instr1 {
-    font-size: 1vw;
+    font-size: 1rem;
     font-weight: 300;
 }
 
 p#instr2 {
     padding: 0;
     margin: 0;
-    font-size: 0.85vw;
+    font-size: 0.95rem;
     font-weight: 300;
 }
 
@@ -339,10 +339,10 @@ line.tentative, line.more {
   grid-column:2;
   width:100%;
   min-width:0;
-  flex-wrap:nowrap;
+  flex-wrap:wrap;
 }
 .controls input[type="search"]{
-  flex:1 1 auto; min-width:0; max-width:none;
+  flex:1 1 320px; min-width:0; max-width:none;
   padding:.75rem .9rem;
   border:1px solid var(--line);
   border-radius:12px; outline:none;
@@ -353,6 +353,7 @@ line.tentative, line.more {
   box-shadow: inset 0 0 0 1px var(--accent);
 }
 .controls button{
+  flex:0 0 auto;
   padding:.7rem 1rem; border-radius:12px; border:1px solid var(--line);
   /*background: linear-gradient(#1c2230, #151924); color:var(--ink);
   box-shadow: var(--shadow);
@@ -384,14 +385,15 @@ line.tentative, line.more {
   display:flex;
   flex-direction:column;
   align-items:center;
+  container-type:inline-size;
 }
 
 .sidebar-panel{
   position:relative;
-  flex:0 1 25vw;
-  width:min(calc(25vw + 20px), 380px);
-  min-width:298px;
-  max-width:calc(100vw - 48px);
+  flex:0 0 20vw;
+  width:20vw;
+  min-width:20vw;
+  max-width:20vw;
   padding:20px 22px;
   border:1px solid #000;
   border-radius:18px;
@@ -461,7 +463,7 @@ line.tentative, line.more {
 }
 
 .sidebar-panel p{
-  font-size:clamp(.95rem, 1vw, 1rem);
+  font-size:1rem;
   font-weight:300;
 }
 
@@ -469,7 +471,25 @@ line.tentative, line.more {
   margin:0 auto;
 }
 
-@media (max-width: 1600px){
+@container (max-width: 1180px){
+  .controls-row{
+    grid-template-columns:minmax(0, 1fr) minmax(0, 900px) minmax(0, 1fr);
+    grid-template-rows:auto auto;
+  }
+
+  .controls{
+    grid-column:2;
+    grid-row:1;
+  }
+
+  #familiarity-select{
+    grid-column:1 / -1;
+    grid-row:2;
+    justify-self:end;
+  }
+}
+
+@media (max-width: 1000px){
   body{
     padding:18px;
   }
